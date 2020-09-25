@@ -1,5 +1,7 @@
 package com.obabec.model.container;
 
+import com.google.gson.annotations.SerializedName;
+import com.obabec.model.container.id.IDMappingOptions;
 import com.obabec.model.container.linux.LinuxDevice;
 import com.obabec.model.container.linux.LinuxResources;
 import com.obabec.model.container.linux.LinuxThrottleDevice;
@@ -10,20 +12,28 @@ import java.util.Map;
 
 public class Container {
     private Map<String, String> annotations;
+    @SerializedName("apparmor_profile")
     private String appArmorProfile;
-
+    @SerializedName("cap_add")
     private List<String> capabilitiesAdd;
+    @SerializedName("cap_drop")
     private List<String> capabilitiesDrop;
 
     // Policies
+    @SerializedName("cgroup_parent")
     private String cgroupParent;
+    @SerializedName("cgroupns")
     private Namespace cgroupNs;
+    @SerializedName("cgroups_mode")
     private String cgroupMode;
 
     //Networks
+    @SerializedName("cni_networks")
     private List<String> cniNetworks;
 
+
     private List<String> command;
+    @SerializedName("common_pid_file")
     private String conmonPidFile;
 
     //Device settings
@@ -31,24 +41,29 @@ public class Container {
     private List<LinuxDevice> devices;
 
     //Dns settings
+    @SerializedName("dns_option")
     private List<String> dnsOption;
+    @SerializedName("dns_search")
     private List<String> dnsSearch;
+    @SerializedName("dns_server")
     private List<List<Integer>> dnsServer;
 
     private List<String> entrypoint;
 
     //Environment vars
     private Map<String, String> env;
+    @SerializedName("env_host")
     private boolean envHost;
 
     //todo: expose
 
     private List<String> groups;
+    @SerializedName("healthconfig")
     private HealthConfig healthConfig;
 
     private String hostname;
 
-
+    private IDMappingOptions idmappings;
     private String image;
     private String imageVolumeMode;
 
